@@ -5,6 +5,7 @@ class MyHomePage extends StatelessWidget {
   final String name = 'Joshua Elisha Shalom Soedarmintarto'; // Name
   final String className = 'PBP E'; // Class
 
+  // Button list
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Daftar Produk", Icons.shopping_basket),
     ItemHomepage("Tambah Produk", Icons.add),
@@ -164,7 +165,7 @@ class ItemCard extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              SnackBar(content: Text("You have pressed the ${item.name} button!"))
+              SnackBar(content: Text("Kamu telah menekan tombol ${item.name}"))
             );
         },
         // Container to store the Icon and Text
