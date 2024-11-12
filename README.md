@@ -240,3 +240,57 @@ class ItemCard extends StatelessWidget {
   }
 }
 ```
+
+# ---TUGAS 8---
+
+## Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+Di Flutter, `const` digunakan untuk membuat objek yang bersifat immutable dan hanya dibuat sekali saat compile-time, sehingga menghemat penggunaan memori dan meningkatkan performa aplikasi karena tidak perlu membuat objek yang sama berulang kali. Keuntungan menggunakan `const` adalah aplikasi menjadi lebih efisien dan responsif karena elemen statis tidak perlu di-render ulang setiap kali widget dibangun kembali. Sebaiknya gunakan `const` ketika membuat widget atau objek yang nilainya tidak akan berubah selama runtime, seperti teks statis, ikon, atau gaya. Namun, `const` tidak perlu digunakan jika nilai dari objek bisa berubah berdasarkan kondisi tertentu atau input pengguna, karena dalam kasus ini objek perlu di-rebuild agar sesuai dengan kondisi terbaru.
+
+## Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+Pada Flutter, `Column` dan `Row` adalah widget layout yang digunakan untuk menyusun elemen secara vertikal dan horizontal. `Column` menyusun widget dari atas ke bawah, sedangkan `Row` menyusun widget dari kiri ke kanan. Keduanya menerima daftar widget sebagai anak, sehingga bisa digunakan untuk mengatur tata letak beberapa elemen sekaligus. `Column` dan `Row` memiliki properti alignment seperti `mainAxisAlignment` dan `crossAxisAlignment` untuk mengatur posisi anak-anak widget di sepanjang sumbu utama dan sumbu silang.
+```dart
+// Contoh implementasi column
+child: const Column(
+  children: [
+    Text(
+      'Not Indomaret',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+    Padding(padding: EdgeInsets.all(8)),
+    Text(
+      "Menjual Semuanya Kecuali yang Dijual Indomaret",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 15,
+        color: Colors.white,
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+  ],
+),
+```
+```dart
+// Contoh implementasi row
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    InfoCard(title: 'NPM', content: npm),
+    InfoCard(title: 'Name', content: name),
+    InfoCard(title: 'Class', content: className),
+  ],
+),
+```
+
+##  Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+Pada halaman form `ProductEntryFormPage`, terdapat tiga elemen input utama yang digunakan: `TextFormField` untuk menerima input `_name`, `_amount`, dan `_description`. Ketiga elemen `TextFormField` ini masing-masing memiliki validasi agar tidak kosong dan, khusus untuk jumlah produk, validasi tambahan untuk memastikan bahwa input berupa angka. Selain `TextFormField`, terdapat beberapa elemen input Flutter lain yang tidak digunakan dalam tugas ini, seperti `DropdownButton` (untuk pilihan bertingkat), `Checkbox` (untuk input boolean), `Radio` (untuk memilih satu opsi dari beberapa opsi), `Switch` (untuk input on/off), dan `Slider` (untuk nilai rentang).
+
+## Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+Tema aplikasi flutter saya diatur melalui Material App. Tema utama saya berisi di `colorScheme`. Isi dari skema warna tersebut adalah warna deep purple sebagai warna utama dan deep purple 400 sebagai warna sekunder. Sehingga tema aplikasi konsisten dengan implementasi melalui penggunaan potongan code `color: Theme.of(context).colorScheme.primary,` di beberapa screen.
+
+## Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+Dalam konteks aplikasi ini, navigasi antarhalaman diatur melalui `LeftDrawer`. Setiap item `ListTile` di dalam `Drawer` digunakan untuk mengarahkan pengguna ke halaman yang berbeda, seperti `MyHomePage` dan `ProductEntryFormPage`. Navigasi ini dilakukan dengan menggunakan `Navigator.pushReplacement`, yang menggantikan halaman saat ini dengan halaman tujuan tanpa menambahkannya ke tumpukan, sehingga pengguna tidak dapat kembali ke halaman sebelumnya dengan tombol kembali. Hal ini cocok untuk navigasi utama dalam aplikasi, seperti pindah antarhalaman inti dari menu.
