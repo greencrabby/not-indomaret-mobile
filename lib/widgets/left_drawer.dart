@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:not_indomaret/screens/menu.dart';
 import 'package:not_indomaret/screens/product_entry_form.dart';
+import 'package:not_indomaret/screens/list_productentry.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -52,7 +53,7 @@ class LeftDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.shopping_basket),
-            title: const Text('Tambah Produk'),
+            title: const Text('Tambah Product'),
             // Redirection part to ProductEntryFormPage
             onTap: () {
               Navigator.pushReplacement(
@@ -61,6 +62,17 @@ class LeftDrawer extends StatelessWidget {
                   builder: (context) => ProductEntryFormPage(),
                 ),
               );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Product List'),
+            onTap: () {
+                // Route to the mood page
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProductEntryPage()),
+                );
             },
           ),
         ],
